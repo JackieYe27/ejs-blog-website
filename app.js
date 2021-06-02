@@ -45,12 +45,13 @@ app.get("/home/:postName", (req,res) => {
   let requestTitle = _.lowerCase(req.params.postName);
   posts.forEach(post => {
     let storedTtitle = _.lowerCase(post.postTitle);
+    let storedBody = post.postBody;
     if(storedTtitle === requestTitle) {
-      console.log("Confirmed");
+      res.render("post", {postTitle:storedTtitle, postBody:storedBody})
     } else {
       console.log("Not a Match");
     }
-  })
+  });
   res.redirect("/home");
 })
 
